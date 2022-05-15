@@ -14,11 +14,13 @@ def hello_world():
 
 @app.route('/signup', methods=['POST'])
 def sign_up():
-    print(request.form)
-    print(request.form.get('id'))
-    print(request.data)
+    # print(request.form)
+    # print(request.form.get('id'))
+    # print(request.data)
     data = json.loads(request.data)
-    print(data)
+    print(f'data={data}')
+    print(data.get('email'))
+    print(data.get('password'))
     return jsonify({'msg': 'True'})
 
 
