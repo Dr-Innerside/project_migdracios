@@ -1,3 +1,4 @@
+import json
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
@@ -12,7 +13,9 @@ def hello_world():
 def sign_up():
     print(request.form)
     print(request.form.get('id'))
-    print(request.form.data)
+    print(request.data)
+    data = json.loads(request.data)
+    print(data)
     return jsonify({'msg': 'True'})
 
 
