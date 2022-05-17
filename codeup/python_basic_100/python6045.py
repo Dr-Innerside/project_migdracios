@@ -20,4 +20,5 @@
 # 4. 원하는 결과 값을 필요한 형태로 만들어 출력한다.(공백, 줄바꿈, 구분자, 등에 따라 원하는 형태로 만들어 출력한다.)
 
 a, b, c = map(int, input().split())
-print(a+b+c, format((a+b+float(c))/3, ".2f"))
+d = [a, b, c]
+print(a+b+c, format((a+b+float(c))/len(d), ".2f"))
