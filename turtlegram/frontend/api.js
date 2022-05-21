@@ -57,6 +57,7 @@ async function handleSignIn(){
     
     if (response.status == 201) {
         alert(response_json['msg'])
+        localStorage.setItem("token", response_json['token'])
     }
 
     else if(response.status == 202) {
