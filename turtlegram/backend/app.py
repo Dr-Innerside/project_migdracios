@@ -12,11 +12,12 @@ cors = CORS(app, resources={r"*": {"origins": "*"}})
 SECRET_KEY = 'WIZARD1993'
 
 client = MongoClient('localhost', 27017)
-db = client.nabacamp
+db = client.turtlegram
 
-bcrypt = Bcrypt(app)
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['BCRYPT_LEVEL'] = 10
+bcrypt = Bcrypt(app)
+
 
 
 @app.route('/')
@@ -31,17 +32,18 @@ def sign_up():
     id_receive = data.get('id')
     pw_receive = data.get('pw')
 
-    pw_hash = bcrypt.gererate_password_hash(pw_receive)
+    pw_hash = bcrypt.generate_password_hash(pw_receive)
 
     if db.user.find({'id': id_receive}):
-        msg = '이미 존재하는 아이디입니다.'
-    else:
         doc = {
             'id': id_receive,
             'pw': pw_hash
         }
         db.user.insert_one(doc)
         msg = '회원가입이 완료되었습니다.'
+        
+    else:
+        msg = '이미 존재하는 아이디입니다.'
     return jsonify({'msg': msg})
 
 @app.route('/login', methods=['POST'])
