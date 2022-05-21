@@ -69,3 +69,13 @@ async function handleSignIn(){
         alert(response_json['msg'])
     }
 }
+
+async function getUserName(){
+    const response = await fetch('http://127.0.0.1:5000/getname', {
+        headers: {
+            'Autorization': localStorage.token
+        }
+    })
+    response_json = await response.json()
+    console.log(response_json)
+}
