@@ -90,11 +90,13 @@ def sign_in():
                 'exp' : datetime.utcnow() + timedelta(seconds=60*60*2)
             }
             token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
-            return jsonify ({'token': token})
+            return jsonify ({'msg': '로그인에 성공! 환영합니다 ^~^','token': token}),201
         else:
             msg = '비밀번호가 일치하지 않습니다.'
+            return jsonify({'msg': msg}), 202
     else:
         msg = '존재하지 않는 아이디입니다.'
+        return jsonify({'msg': msg}), 203
 
     # --- response --- 
 
