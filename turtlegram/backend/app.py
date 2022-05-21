@@ -41,7 +41,7 @@ def sign_up():
 
         # -- 이메일 조회 --
         if '@' in id_receive:
-            if '.' in id_receive.split('@'):
+            if '.' in id_receive.split('@')[1]:
                 # -- 중복 조회 --
                 if db.user.find_one({'id': id_receive}):
                     msg = '이미 존재하는 아이디입니다.'
