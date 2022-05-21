@@ -55,16 +55,15 @@ async function handleSignIn(){
     response_json = await response.json()
     console.log(response_json)
     
-    // if (response.status == 201) {
-    //     alert(response_json['msg'])
-    //     window.location.replace('http://127.0.01:5500/frontend/login.html')
-    // }
+    if (response.status == 201) {
+        alert(response_json['msg'])
+    }
 
-    // else if(response.status == 202) {
-    //     alert(response_json['msg'])
-    // }
+    else if(response.status == 202) {
+        alert(response_json['msg'])
+    }
 
-    // else if(response.status == 203) {
-    //     alert(response_json['msg'])
-    // }
+    else if(response.status == 203) {
+        alert(response_json['msg'])
+    }
 }

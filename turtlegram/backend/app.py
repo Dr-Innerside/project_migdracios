@@ -73,10 +73,13 @@ def sign_up():
 def sign_in():
     # --- request ---
     data = json.loads(request.data)
+    print(f'data is : {data}')
 
     # --- progress ---
-    id_receive = data.get('id')
-    pw_receive = data.get('pw')
+    id_receive = data.get('email')
+    pw_receive = data.get('password')
+
+    print(f'id is : {id_receive}, pw is : {pw_receive}')
 
     
     find_user = db.user.find_one({'id': id_receive})
