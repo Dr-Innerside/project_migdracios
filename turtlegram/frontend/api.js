@@ -1,5 +1,5 @@
 // 비동기 함수 선언
-async function handleSignin() {
+async function handleSignUp() {
 
     const signupData = {
         email: document.getElementById('floatingInput').value,
