@@ -15,7 +15,12 @@ async function handleSignUp() {
         method: 'POST',
         body: JSON.stringify(signupData)
     })
-    console.log('response check in SIGNUP')
-    console.log(response)
+    // console.log('response check in SIGNUP')
+    // console.log(response['msg'])
+
+    response_json = await response.json()
+    console.log(response_json)
+    msg = response_json['msg']
+    alert(msg)
 
 }

@@ -51,18 +51,23 @@ def sign_up():
                     db.user.insert_one(doc)
                     msg = '회원가입이 완료되었습니다.'
                     print(msg)
+                    return jsonify({'msg': msg}), 201
+                    
                 else:
                     msg = '이미 존재하는 아이디입니다.'
                     print(msg)
+                    return jsonify({'msg': msg}), 203
             else:
                 msg = '이메일 형식이 아닙니다.'
                 print(msg)
+                return jsonify({'msg': msg}), 202
         else:
             msg = '이메일 형식이 아닙니다'
             print(msg)
+            return jsonify({'msg': msg}), 202
 
         
-        return jsonify({'msg': msg})
+        
 
 @app.route('/login', methods=['POST'])
 def sign_in():
