@@ -20,7 +20,16 @@ async function handleSignUp() {
 
     response_json = await response.json()
     console.log(response_json)
-    msg = response_json['msg']
-    alert(msg)
+    
+    if (response.status == 201) {
+        alert(response_json['msg'])
+    }
 
+    else if(response.status == 202) {
+        alert(response_json['msg'])
+    }
+
+    else if(response.status == 203) {
+        alert(response_json['msg'])
+    }
 }

@@ -35,7 +35,7 @@ def sign_up():
         id_receive = data['email']
         pw_receive = data['password']
 
-        print(f'리퀘스트 변수 체크 id{id_receive}, pw{pw_receive}')
+        print(f'리퀘스트 변수 체크 id: {id_receive}, pw: {pw_receive}')
 
         pw_hash = bcrypt.generate_password_hash(pw_receive)
 
@@ -44,6 +44,11 @@ def sign_up():
             if '.' in id_receive.split('@'):
                 # -- 중복 조회 --
                 if db.user.find_one({'id': id_receive}):
+                    msg = '이미 존재하는 아이디입니다.'
+                    print(msg)
+                    return jsonify({'msg': msg}), 203
+                    
+                else:
                     doc = {
                         'id': id_receive,
                         'pw': pw_hash
@@ -52,11 +57,6 @@ def sign_up():
                     msg = '회원가입이 완료되었습니다.'
                     print(msg)
                     return jsonify({'msg': msg}), 201
-                    
-                else:
-                    msg = '이미 존재하는 아이디입니다.'
-                    print(msg)
-                    return jsonify({'msg': msg}), 203
             else:
                 msg = '이메일 형식이 아닙니다.'
                 print(msg)
