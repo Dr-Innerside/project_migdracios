@@ -1,5 +1,5 @@
-const BE_BASE_URL = "http://127.0.01:5000"
-const FE_BASE_URL = "http://127.0.01:5500"
+const BE_BASE_URL = "http://127.0.0.1:5000"
+const FE_BASE_URL = "http://127.0.0.1:5500"
 
 // 비동기 함수 선언
 async function handleSignUp() {
@@ -72,7 +72,9 @@ async function handleSignIn(){
 }
 
 async function getUserName(){
-    const response = await fetch('http://127.0.0.1:5000/getname', {
+    console.log('loading userName')
+
+    const response = await fetch(`${BE_BASE_URL}/getname`, {
         headers: {
             'Autorization': localStorage.getItem("token")
         }
@@ -81,3 +83,5 @@ async function getUserName(){
     response_json = await response.json()
     console.log(response_json)
 }
+
+

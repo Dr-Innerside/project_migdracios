@@ -1,6 +1,6 @@
 from functools import wraps
 import json, jwt
-from flask import Flask, abort, jsonify, request
+from flask import Flask, abort, jsonify, redirect, request, url_for
 from flask_cors import CORS
 from pymongo import MongoClient
 from flask_bcrypt import Bcrypt
@@ -38,7 +38,7 @@ def authorize(f):
 @app.route('/')
 @authorize
 def home(user):
-    return jsonify({'message': 'success'})
+    return jsonify ({'msg': 'success'})
 
 
 @app.route('/signup', methods=['GET','POST'])
