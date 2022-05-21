@@ -1,5 +1,6 @@
+from functools import wraps
 import json, jwt
-from flask import Flask, jsonify, request
+from flask import Flask, abort, jsonify, request
 from flask_cors import CORS
 from pymongo import MongoClient
 from flask_bcrypt import Bcrypt
@@ -19,9 +20,24 @@ app.config['BCRYPT_LEVEL'] = 10
 bcrypt = Bcrypt(app)
 
 
+def authorize(f):
+    @wraps(f)
+    def decorated_function():
+        if not 'Authorization' in request.headers:
+            abort(401)
+        token = request.headers['Authorization']
+        try:
+            user = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        except:
+            abort(401)
+        return f(user)
+    return decorated_function
+
+
 
 @app.route('/')
-def hello_world():
+@authorize
+def hello_world(user):
     return jsonify({'message': 'success'})
 
 
