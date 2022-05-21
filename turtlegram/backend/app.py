@@ -37,7 +37,7 @@ def authorize(f):
 
 @app.route('/')
 @authorize
-def hello_world(user):
+def home(user):
     return jsonify({'message': 'success'})
 
 
@@ -117,7 +117,11 @@ def sign_in():
         msg = '존재하지 않는 아이디입니다.'
         return jsonify({'msg': msg}), 203
 
-    # --- response --- 
+
+@app.route('/getname', methods=['GET'])
+def get_user_name(user):
+    find_name = db.user.find_one({'id':user})['id']
+    return jsonify ({'user_id': find_name.split('@')[0]})
 
 
 
