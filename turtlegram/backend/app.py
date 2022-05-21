@@ -22,7 +22,7 @@ bcrypt = Bcrypt(app)
 
 def authorize(f):
     @wraps(f)
-    def decorated_function():
+    def decorated_function(*args, **kws):
         if not 'Authorization' in request.headers:
             abort(401)
         token = request.headers['Authorization']
