@@ -25,39 +25,44 @@ def hello_world():
     return jsonify({'message': 'success'})
 
 
-@app.route('/signup', methods=['POST'])
+@app.route('/signup', methods=['GET','POST'])
 def sign_up():
-    data = json.loads(request.data)
+    if request.method =='POST':
+        data = json.loads(request.data)
 
-    print(f'리퀘스트 데이터 체크 {data}')
+        print(f'리퀘스트 데이터 체크 {data}')
 
-    id_receive = data.get('id')
-    pw_receive = data.get('pw')
+        id_receive = data['email']
+        pw_receive = data['password']
 
-    print(f'리퀘스트 변수 체크 id{id_receive}, pw{pw_receive}')
+        print(f'리퀘스트 변수 체크 id{id_receive}, pw{pw_receive}')
 
-    pw_hash = bcrypt.generate_password_hash(pw_receive)
+        pw_hash = bcrypt.generate_password_hash(pw_receive)
 
-    # -- 이메일 조회 --
-    if '@' in id_receive:
-        if '.' in id_receive.split('@'):
-            # -- 중복 조회 --
-            if db.user.find_one({'id': id_receive}):
-                doc = {
-                    'id': id_receive,
-                    'pw': pw_hash
-                }
-                db.user.insert_one(doc)
-                msg = '회원가입이 완료되었습니다.'
+        # -- 이메일 조회 --
+        if '@' in id_receive:
+            if '.' in id_receive.split('@'):
+                # -- 중복 조회 --
+                if db.user.find_one({'id': id_receive}):
+                    doc = {
+                        'id': id_receive,
+                        'pw': pw_hash
+                    }
+                    db.user.insert_one(doc)
+                    msg = '회원가입이 완료되었습니다.'
+                    print(msg)
+                else:
+                    msg = '이미 존재하는 아이디입니다.'
+                    print(msg)
             else:
-                msg = '이미 존재하는 아이디입니다.'
+                msg = '이메일 형식이 아닙니다.'
+                print(msg)
         else:
-            msg = '이메일 형식이 아닙니다.'
-    else:
-        msg = '이메일 형식이 아닙니다'
+            msg = '이메일 형식이 아닙니다'
+            print(msg)
 
-    
-    return jsonify({'msg': msg})
+        
+        return jsonify({'msg': msg})
 
 @app.route('/login', methods=['POST'])
 def sign_in():
