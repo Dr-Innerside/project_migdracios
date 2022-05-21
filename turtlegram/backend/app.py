@@ -47,7 +47,7 @@ def sign_up():
 @app.route('/login', methods=['POST'])
 def sign_in():
     # --- request ---
-    data = json.loads(requset.data)
+    data = json.loads(request.data)
 
     # --- progress ---
     id_receive = data.get('id')
