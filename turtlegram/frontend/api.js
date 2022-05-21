@@ -59,7 +59,7 @@ async function handleSignIn(){
         alert(response_json['msg'])
         localStorage.setItem("token", response_json['token'])
         console.log(localStorage.token)
-        window.location.replace('http://127.0.01:5500/index.html')
+        window.location.replace('http://127.0.01:5500/frontend/index.html')
     }
 
     else if(response.status == 202) {
@@ -77,6 +77,7 @@ async function getUserName(){
             'Autorization': localStorage.getItem("token")
         }
     })
+    console.log(response)
     response_json = await response.json()
     console.log(response_json)
 }
