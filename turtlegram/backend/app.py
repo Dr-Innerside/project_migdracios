@@ -3,6 +3,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from pymongo import MongoClient
 import hashlib
+from flask_bcrypt import Bcrypt
 
 
 app = Flask(__name__)
@@ -10,6 +11,10 @@ cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 client = MongoClient('localhost', 27017)
 db = client.nabacamp
+
+bcrypt = Bcrypt(app)
+app.config['SECRET_KEY'] = 'WIZARD1993'
+app.config['BCRYPT_LEVEL'] = 10
 
 
 @app.route('/')
@@ -24,7 +29,7 @@ def sign_up():
     id_receive = data.get('id')
     pw_receive = data.get('pw')
 
-    pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
+    pw_hash = bcrypt.gererate_password_hash(pw_receive)
 
     if db.user.find({'id': id_receive}):
         msg = '이미 존재하는 아이디입니다.'
@@ -46,7 +51,7 @@ def sign_in():
     id_receive = data.get('id')
     pw_receive = data.get('pw')
 
-    
+    pw_hash = 
 
     # --- response --- 
 
