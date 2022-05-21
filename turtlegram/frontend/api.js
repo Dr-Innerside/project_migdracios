@@ -33,3 +33,7 @@ async function handleSignUp() {
         alert(response_json['msg'])
     }
 }
+
+function goToSignUp(){
+    window.location.replace('http://127.0.0.1:5500/frontend/signup.html')
+}
