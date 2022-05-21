@@ -34,7 +34,7 @@ def sign_up():
 
     pw_hash = bcrypt.generate_password_hash(pw_receive)
 
-    if db.user.find({'id': id_receive}):
+    if db.user.find_one({'id': id_receive}):
         doc = {
             'id': id_receive,
             'pw': pw_hash
@@ -56,14 +56,14 @@ def sign_in():
     pw_receive = data.get('pw')
 
     
-    find_user = db.user.find_one({'id: id_receive'})
+    find_user = db.user.find_one({'id': id_receive})
 
     if find_user:
         # -- pw check --
-        if bcrypt.checkpw(find_user['pw'],pw_receive):
+        if bcrypt.check_password_hash(find_user['pw'],pw_receive):
             # -- payload --
             payload = {
-                'id': str(find_user['_id']),
+                'id': find_user['id'],
                 'exp' : datetime.utcnow() + timedelta(seconds=60*60*2)
             }
             token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
