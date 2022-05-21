@@ -1,19 +1,21 @@
-import json
+import json, jwt
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from pymongo import MongoClient
-import hashlib
 from flask_bcrypt import Bcrypt
+from datetime import datetime, timedelta
 
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 
+SECRET_KEY = 'WIZARD1993'
+
 client = MongoClient('localhost', 27017)
 db = client.nabacamp
 
 bcrypt = Bcrypt(app)
-app.config['SECRET_KEY'] = 'WIZARD1993'
+app.config['SECRET_KEY'] = SECRET_KEY
 app.config['BCRYPT_LEVEL'] = 10
 
 
@@ -51,7 +53,23 @@ def sign_in():
     id_receive = data.get('id')
     pw_receive = data.get('pw')
 
-    pw_hash = 
+    
+    find_user = db.user.find_one({'id: id_receive'})
+
+    if find_user:
+        # -- pw check --
+        if bcrypt.checkpw(find_user['pw'],pw_receive):
+            # -- payload --
+            payload = {
+                'id': str(find_user['_id']),
+                'exp' : datetime.utcnow() + timedelta(seconds=60*60*2)
+            }
+            token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+            return jsonify ({'token': token})
+        else:
+            msg = '비밀번호가 일치하지 않습니다.'
+    else:
+        msg = '존재하지 않는 아이디입니다.'
 
     # --- response --- 
 
