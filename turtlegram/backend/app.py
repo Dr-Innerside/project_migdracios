@@ -37,6 +37,20 @@ def sign_up():
         msg = '회원가입이 완료되었습니다.'
     return jsonify({'msg': msg})
 
+@app.route('/login', methods=['POST'])
+def sign_in():
+    # --- request ---
+    data = json.loads(requset.data)
+
+    # --- progress ---
+    id_receive = data.get('id')
+    pw_receive = data.get('pw')
+
+    
+
+    # --- response --- 
+
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
