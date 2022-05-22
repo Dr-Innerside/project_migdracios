@@ -4,7 +4,7 @@
 # 단, 3항 연산을 사용한다.
 
 a, b, c = map(int, input().split())
-#   --- 세 값 중 가장 큰 값을 뽑기 위해서는
+#   --- 세 값 중 가장 작은 값을 뽑기 위해서는
 #   --- 조건문으로 일일이 비교해야 할까?
 #   --- 좀 더 객체지향적으로!
 
@@ -13,16 +13,20 @@ a, b, c = map(int, input().split())
 #   --- a b
 #   --- b c
 #   --- c a
-def big_number(num1, num2, num3):
 
-    biggest = num1 if num1>num2 else num2
-    
-    if biggest == num1:
-        biggest = num1 if num1>num3 else num3
-        return biggest
-    elif biggest == num2:
-        biggest = num2 if num2>num3 else num3
-        return biggest
-    
-result = f'답은 {big_number(a,b,c)}'
-print(result)
+num1, num2, num3 = map(int, input().split())
+
+
+def small_number(num1, num2, num3):
+
+    smallest = num1 if num1 < num2 else num2
+
+    if smallest == num1:
+        smallest = num1 if num1 < num3 else num3
+        return smallest
+    elif smallest == num2:
+        smallest = num2 if num2 < num3 else num3
+        return smallest
+
+    # result = f'답은 {big_number(a,b,c)}'
+    print(smallest)
