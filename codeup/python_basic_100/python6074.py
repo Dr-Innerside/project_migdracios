@@ -17,8 +17,9 @@
 # (end='\n'로 작성하거나 생략하면, 값을 출력한 후 마지막(end)에 줄바꿈(newline)이 된다.)
 
 
-c = ord(input())
-t = ord('a')
-while t <= c:
-    print(chr(t), end=' ')
-    t += 1
+mychr = ord(input())
+# print(mychr)
+startchr = ord('a')
+while mychr >= startchr:
+    print(chr(startchr), end=" ")
+    startchr += 1
