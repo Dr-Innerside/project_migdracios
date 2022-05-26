@@ -10,30 +10,36 @@
 # -- logic --
 # 1. 입력
 # 2. 입력한 수까지 1부터 더해나가기
-# 3. 이게 1000보다 크면 멈추고 마지막에 더한 수를 프린트
+# 3. 합이 입력한 수와 같아질 때 멈추기
 
+# while mynum != startNum:
+#
+#     sum += startNum
+#     # print(f'반복 시도 : mynum: {mynum}, startNum: {startNum} sum: {sum}')
+#     startNum += 1
+#
+#     if mynum == startNum:
+#         # print(f'입력 값까지 더했다! {mynum}=={startNum}')
+#         break
+#
+#     # print(f'sum 값 체크 {sum}')
+#
+#     if sum >= 1000:
+#         # print(f'sum 1000초과! 마지막으로 더한 정수는~ {startNum}')
+#         print(startNum)
+#         break
+#
+#
 
+# print('숫자를 하나 입력해주세요')
 mynum = int(input())
 sum = 0
 startNum = 1
 
-
-
-while mynum != startNum:
+while mynum >= startNum:
+    # print(f'진입합니다 {startNum}')
 
     sum += startNum
-    # print(f'반복 시도 : mynum: {mynum}, startNum: {startNum} sum: {sum}')
     startNum += 1
 
-    if mynum == startNum:
-        # print(f'입력 값까지 더했다! {mynum}=={startNum}')
-        break
-
-    # print(f'sum 값 체크 {sum}')
-
-    if sum >= 1000:
-        # print(f'sum 1000초과! 마지막으로 더한 정수는~ {startNum}')
-        print(startNum)
-        break
-
-    
+print(sum)
