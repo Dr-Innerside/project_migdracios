@@ -23,7 +23,7 @@ async function handleSignUp() {
     
     if (response.status == 201) {
         alert(response_json['msg'])
-        window.location.replace('http://127.0.01:5500/frontend/login.html')
+        window.location.replace('http://127.0.0.1:5500/frontend/login.html')
     }
 
     else if(response.status == 202) {
@@ -76,12 +76,20 @@ async function getUserName(){
 
     const response = await fetch(`${BE_BASE_URL}/getname`, {
         headers: {
-            'Autorization': localStorage.getItem("token")
+            'Authorization': localStorage.getItem("token")
         }
     })
-    console.log(response)
+    // console.log(response)
     response_json = await response.json()
     console.log(response_json)
+
+    user_id = response_json['user_id'].split('@')[0]
+    console.log('user_id : ', user_id)
+
+    const element_username = document.getElementById("user_name")
+    
+    element_username.innerText = response_json.user_id
+
 }
 
 

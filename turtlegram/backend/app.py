@@ -22,13 +22,16 @@ bcrypt = Bcrypt(app)
 
 def authorize(f):
     @wraps(f)
-    def decorated_function(*args, **kws):
+    def decorated_function():
+        print(f'리퀘스트 헤더는 : {request.headers}')
         if not 'Authorization' in request.headers:
+            print(f'안들어있어서 abort')
             abort(401)
         token = request.headers['Authorization']
         try:
             user = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
         except:
+            print('예외대상 abort')
             abort(401)
         return f(user)
     return decorated_function
@@ -122,7 +125,7 @@ def sign_in():
 @authorize
 def get_user_name(user):
     print(f'user: {user}')
-    find_name = db.user.find_one({'_id':user['id']})
+    find_name = db.user.find_one({'id':user['id']})
     print(f'find_name: {find_name}')
     return jsonify ({'user_id': find_name['id']})
 
