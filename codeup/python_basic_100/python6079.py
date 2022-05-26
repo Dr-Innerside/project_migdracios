@@ -31,15 +31,37 @@
 #
 #
 
+
+
+# while mynum >= startNum:
+#     # print(f'진입합니다 {startNum}')
+#
+#     sum += startNum
+#     startNum += 1
+#
+# print(sum)
+#
+
 # print('숫자를 하나 입력해주세요')
 mynum = int(input())
 sum = 0
 startNum = 1
 
-while mynum >= startNum:
-    # print(f'진입합니다 {startNum}')
+while mynum != sum :
+    
+
+    # print(f'{startNum} 번째 진입')
 
     sum += startNum
+
+    # print(f'지금까지 합한 수 {sum}')
+
+    if mynum == sum:
+        break
+
     startNum += 1
 
-print(sum)
+    # print(f'start num ->{startNum}')
+
+
+print(startNum)
