@@ -43,25 +43,19 @@
 #
 
 # print('숫자를 하나 입력해주세요')
-mynum = int(input())
-sum = 0
-startNum = 1
-
-while mynum != sum :
-    
-
-    # print(f'{startNum} 번째 진입')
-
-    sum += startNum
-
-    # print(f'지금까지 합한 수 {sum}')
-
-    if mynum == sum:
-        break
-
-    startNum += 1
-
-    # print(f'start num ->{startNum}')
-
-
-print(startNum)
+# mynum = int(input())
+# sum = 0
+# startNum = 1
+#
+# def lastNum(mynum, sum=0, startNum=1):
+#     while mynum != sum :
+#         # print(f'{startNum} 번째 진입')
+#         sum += startNum
+#         # print(f'지금까지 합한 수 {sum}')
+#         if mynum == sum:
+#             break
+#         startNum += 1
+#         # print(f'start num ->{startNum}')
+#     print(startNum)
+#
+# lastNum((mynum))
