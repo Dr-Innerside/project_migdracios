@@ -33,3 +33,4 @@ def delete_tweet(request,id):
     my_tweet.delete()
     return redirect('/tweet')
 
+
