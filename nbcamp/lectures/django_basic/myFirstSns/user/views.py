@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import UserModel
 from django.http import HttpResponse
+from django.contrib.auth import get_user_model
 
 
 # Create your views here.
@@ -16,15 +17,11 @@ def sign_up_view(request):
         if password != password2:
             return render(request, 'user/signup.html')
         else:
-            me = UserModel.objects.filter(username=username)
-            if me:
+            exist_user = get_user_model().objects.filter(username=username)
+            if exist_user:
                 return redirect('/sign-up')
             else:
-                new_user = UserModel()
-                new_user.username = username
-                new_user.password = password
-                new_user.bio = bio
-                new_user.save()
+                UserModel.objects.create_user(username=username, password=password, bio=bio)
         return redirect('/sign-in')
 
 
