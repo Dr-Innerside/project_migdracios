@@ -47,3 +47,7 @@ def sign_in_view(request):
             return redirect('/')
         else:
             return redirect('/sign-in')
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
