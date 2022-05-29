@@ -36,6 +36,6 @@ def sign_in_view(request):
         me = auth.authenticate(request, username=username, password=password)
         if me is not None:
             auth.login(request, me)
-            return HttpResponse(f'{me.username} 님 안녕하십니꽈 ^~^')
+            return redirect('/')
         else:
             return redirect('/sign-in')
