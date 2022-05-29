@@ -59,3 +59,14 @@
 #     print(startNum)
 #
 # lastNum((mynum))
+def last_num(mynum, startNum=1, sum=0):
+    for sequence in range(mynum):
+        if mynum <= sum:
+            return startNum-1
+        else:
+            sum+=startNum
+            startNum+=1
+            # print(f'sum->{sum}')
+mynum = int(input())
+result = last_num(mynum)
+print(result)

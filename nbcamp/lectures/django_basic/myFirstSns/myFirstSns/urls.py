@@ -1,4 +1,4 @@
-"""basic_django URL Configuration
+"""myFirstSns URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -14,11 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('test/', views.base_response, name='first_test'),
     path('first/', views.first_view, name='first_view'),
+    path('',include('user.urls')),
+    path('', include('tweet.urls')),
 ]
