@@ -14,7 +14,8 @@ def tweet(request):
     if request.method == 'GET':
         user = request.user.is_authenticated
         if user:
-            return render(request, 'tweet/home.html')
+            all_tweet = TweetModel().objects.all().order_by('-crated_at')
+            return render(request, 'tweet/home.html', {'tweet': all_tweet})
         else:
             return redirect('/sign-in')
     elif request.method == 'POST':
