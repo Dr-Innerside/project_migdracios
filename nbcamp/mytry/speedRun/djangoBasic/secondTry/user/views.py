@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import UserModel
+from django.http import HttpResponse
 
 # Create your views here.
 def sign_up_view(request):
@@ -27,4 +28,16 @@ def sign_up_view(request):
 
 
 def sign_in_view(request):
-    return render(request, 'user/signin.html')
+    if request.method == 'GET':
+        return render(request, 'user/signin.html')
+    elif request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        me = UserModel.objects.get(username=username)
+        if me:
+            return HttpResponse(f"로그인 성공 {me.username}")
+        else:
+            return render(request, 'user/signin.html')
+        return ''
+
