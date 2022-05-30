@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import UserModel
 from django.http import HttpResponse
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 def sign_up_view(request):
@@ -16,14 +17,15 @@ def sign_up_view(request):
             return render(request, 'user/signup.html')
         else:
             # 회원가입 중복 방지
-            exist_user = UserModel.objects.filter(username=username)
-
+            # exist_user = UserModel.objects.filter(username=username)
+            exist_user = get_user_model().objects.filter(username=username)
             if not exist_user:
-                new_user = UserModel()
-                new_user.username = username
-                new_user.password = password
-                new_user.bio = bio
-                new_user.save()
+                # new_user = UserModel()
+                # new_user.username = username
+                # new_user.password = password
+                # new_user.bio = bio
+                # new_user.save()
+                UserModel.objects.create_user(username=username, password=password, bio=bio)
                 return redirect('/sign-in')
             else:
                 return render(request, 'user/signup.html')
