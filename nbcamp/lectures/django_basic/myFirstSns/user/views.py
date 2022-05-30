@@ -43,15 +43,15 @@ def sign_in_view(request):
         else:
             return render(request, 'user/signin.html')
     elif request.method == 'POST':
-        username = request.POST.get('username', None)
-        password = request.POST.get('password', None)
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
 
         me = auth.authenticate(request, username=username, password=password)
         if me is not None:
             auth.login(request, me)
             return redirect('/')
         else:
-            return redirect('/sign-in')
+            return render(request, 'user/signin.html', {'error': '유저 이름 혹은 패스워드를 확인해주세요!'})
 
 @login_required
 def logout(request):
