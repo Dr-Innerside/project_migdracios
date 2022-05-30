@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import UserModel
 from django.http import HttpResponse
 from django.contrib.auth import get_user_model
+from django.contrib import auth
 
 # Create your views here.
 def sign_up_view(request):
@@ -31,8 +32,9 @@ def sign_in_view(request):
         username = request.POST.get('username', None)
         password = request.POST.get('password', None)
         
-        me = UserModel.objects.get(username=username)
+        me = auth.authenticate(request, username=username, password=password)
         if me:
+            auth.login(request, me)
             return HttpResponse(f"로그인 성공 {me.username}")
         else:
             return render(request, 'user/signin.html')
