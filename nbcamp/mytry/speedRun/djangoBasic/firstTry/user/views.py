@@ -15,12 +15,20 @@ def sign_up_view(request):
         if password != password2:
             return render(request, 'user/signup.html')
         else:
-            new_user = UserModel()
-            new_user.username = username
-            new_user.password = password
-            new_user.bio = bio
-            new_user.save()
-        return redirect('/sign-in')
+            # 회원가입 중복 방지
+            exist_user = UserModel.objects.filter(username=username)
+
+            if not exist_user:
+                new_user = UserModel()
+                new_user.username = username
+                new_user.password = password
+                new_user.bio = bio
+                new_user.save()
+                return redirect('/sign-in')
+            else:
+                return render(request, 'user/signup.html')
+
+
 
 def sign_in_view(request):
     if request.method == 'POST':
