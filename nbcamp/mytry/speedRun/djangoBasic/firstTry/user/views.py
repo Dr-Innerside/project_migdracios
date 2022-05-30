@@ -38,7 +38,7 @@ def sign_in_view(request):
         me = UserModel.objects.get(username=username)
         if me.password == password:
             request.session['user'] = me.username
-            return HttpResponse("Welcome to Login!")
+            return HttpResponse(f"Welcome to Login! {me.username}")
         else:
             return redirect('/sign-in')
     elif request.method == 'GET':
