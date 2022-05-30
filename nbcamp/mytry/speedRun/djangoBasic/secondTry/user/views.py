@@ -7,10 +7,10 @@ def sign_up_view(request):
     if request.method == 'GET':
         return render(request, 'user/signup.html')
     elif request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        password2 = request.POST.get('password2')
-        bio = request.POST.get('bio')
+        username = request.POST.get('username', None)
+        password = request.POST.get('password', None)
+        password2 = request.POST.get('password2', None)
+        bio = request.POST.get('bio', None)
 
         if password == password2:
             exist_user = UserModel.objects.filter(username=username)
@@ -31,8 +31,8 @@ def sign_in_view(request):
     if request.method == 'GET':
         return render(request, 'user/signin.html')
     elif request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.POST.get('username', None)
+        password = request.POST.get('password', None)
         
         me = UserModel.objects.get(username=username)
         if me:
