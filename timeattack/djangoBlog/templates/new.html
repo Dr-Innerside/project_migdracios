@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>new</title>
+</head>
+<body>
+<h1>게시글 작성하기</h1>
+<form class="form-area" style="display: flex">
+    <div class="form-group mt-2 mb-2">
+        <label for="title">게시글 제목</label>
+        <input type="text" class="form-control" id="title" name="title">
+    </div>
+    <select name="category">
+        <option value="movie">영화</option>
+        <option value="comedy">코미디</option>
+        <option value="drama">드라마</option>
+    </select>
+    <div class="form-group mt-2 mb-2">
+        <label for="password2">내용</label>
+        <textarea class="form-control" id="content" name="content"></textarea>
+    </div>
+
+    <div style="float: right">
+        <button type="submit" class="btn btn-primary">게시글 작성</button>
+    </div>
+</form>
+</body>
+</html>
