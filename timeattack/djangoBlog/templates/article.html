@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Articles</title>
+</head>
+<body>
+<h3>작성한 게시글 확인하기</h3>
+{% for article in articles %}
+    <li><a href="">{{ article.title }}</a></li>
+{% endfor %}
+</body>
+</html>
