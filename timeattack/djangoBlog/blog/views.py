@@ -14,7 +14,7 @@ def new_article(request):
 
         new_post = Article()
         new_post.title = title
-        new_post.category = category
+        new_post.category = Category.objects.get(name=category)
         new_post.content = content
         new_post.save()
         return HttpResponse(f'title{title}, category{category}, content{content}')
