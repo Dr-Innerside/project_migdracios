@@ -15,11 +15,11 @@
 #     print("X", end=' ')    #출력 후 공백문자(빈칸, ' ')로 끝냄
 
 callNum = int(input())
-result =[]
 for i in range(1, callNum+1):
     if i%3 == 0:
-        result.append('X')
+        print('X', end=' ')
     else:
-        result.append(i)
-print(result)
+        print(i, end=' ')
 
+# temp = ['X' if i % 3 == 0 else i for i in range(1, callNum + 1)]
+# print(temp, end='')
