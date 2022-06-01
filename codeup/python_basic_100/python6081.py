@@ -7,11 +7,20 @@
 # 1부터 F까지 곱한 16진수 구구단의 내용을 출력해보자.
 # (단, A ~ F 까지만 입력된다.)
 
-num = int(input())
-hexRange = list(a for a in range(1,17))
+# num = int(input())
+# hexRange = list(a for a in range(1,17))
+#
+# for calc in hexRange:
+#     print(calc)
+#     # print('X%'%num +'*'+calc+'='+'X%'%(num*calc))
+#     # print(f'{num}*{calc}')
+#     print('%X' % num, '*%X' % calc, '=%X' % (num * calc), sep='')
 
-for calc in hexRange:
-    print(calc)
-    # print('X%'%num +'*'+calc+'='+'X%'%(num*calc))
-    # print(f'{num}*{calc}')
-    print('%X' % num, '*%X' % calc, '=%X' % (num * calc), sep='')
+
+n = input()
+# print(f'n->{n}')
+listn = ['A','B','C','D','E','F']
+if n in listn:
+    n = int(n, 16)
+    for i in range(1,16):
+        print('%X'%n, '*%X'%i, '=%X'%(n*i), sep='')
