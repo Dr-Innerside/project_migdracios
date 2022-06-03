@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>카테고리 보여주기</title>
+</head>
+<body>
+<h3>음료 카테고리</h3>
+{% for category in categories %}
+<form style="margin-bottom: 10px">
+    <a href="/drink/{{ category.id }}">{{ category.name }}</a>
+</form>
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <textarea class="form-control" style="resize:none" name="name"></textarea>
+        <input type="file"
+               id="img_upload" name="avatar"
+               accept="image/png, image/jpeg">
+        <button type="submit">Upload</button>
+
+    </form>
+</body>
+</html>

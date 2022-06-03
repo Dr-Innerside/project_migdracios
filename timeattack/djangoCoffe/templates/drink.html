@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>드링크!</title>
+</head>
+<body>
+<h2>SHOW ME THE DRINKS!!</h2>
+<hr>
+{% for drink in drinks %}
+    <h3>이름: {{ drink.name }}</h3>
+    <p style="color: red">카테고리:  {{ drink.category }}</p>
+    <p style="color: navy">영양정보: {{ drink.nutrition }}</p>
+    <p style="color: green">알러지: {{ drink.allergy }}</p>
+{% endfor %}
+<button onclick="window.location.href='/'">돌아가기</button>
+</body>
+</html>
