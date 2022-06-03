@@ -6,8 +6,10 @@
 </head>
 <body>
 <h3>음료 카테고리</h3>
-<div>
-    <button>음료이름</button>
-</div>
+{% for category in categories %}
+<form style="margin-bottom: 10px">
+    <button>{{ category.name }}</button>
+</form>
+{% endfor %}
 </body>
 </html>
