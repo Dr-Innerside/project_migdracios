@@ -8,7 +8,7 @@
 <h3>음료 카테고리</h3>
 {% for category in categories %}
 <form style="margin-bottom: 10px">
-    <button>{{ category.name }}</button>
+    <a href="/drink/{{ category.id }}">{{ category.name }}</a>
 </form>
 {% endfor %}
 </body>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>드링크!</title>
+</head>
+<body>
+<h2>SHOW ME THE DRINKS!!</h2>
+{% for drink in drinks %}
+    <h3>이름: {{ drink.name }}</h3>
+    <p>카테고리:  {{ drink.category }}</p>
+    <p>영양정보: {{ drink.nutrition }}</p>
+    <p>알러지: {{ drink.allergy }}</p>
+{% endfor %}
+</body>
+</html>
