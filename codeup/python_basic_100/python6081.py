@@ -7,6 +7,7 @@
 # 1부터 F까지 곱한 16진수 구구단의 내용을 출력해보자.
 # (단, A ~ F 까지만 입력된다.)
 
+
 # num = int(input())
 # hexRange = list(a for a in range(1,17))
 #
