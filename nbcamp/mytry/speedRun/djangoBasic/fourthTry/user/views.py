@@ -33,7 +33,11 @@ def sign_up_view(request):
 
 def sign_in_view(request):
     if request.method == 'GET':
-        return render(request, 'user/signin.html')
+        user = request.user.is_authenticated
+        if not user:
+            return render(request, 'user/signin.html')
+        else:
+            return redirect('/')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
