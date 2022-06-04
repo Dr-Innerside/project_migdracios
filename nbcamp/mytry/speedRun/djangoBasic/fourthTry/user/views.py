@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import UserModel
 from django.contrib.auth import get_user_model
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -48,3 +49,8 @@ def sign_in_view(request):
             return redirect('/')
         else:
             return render(request, 'user/signin.html')
+
+@login_required
+def sign_out(request):
+    auth.logout(request)
+    return redirect('/')
