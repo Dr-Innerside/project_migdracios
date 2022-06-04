@@ -30,4 +30,15 @@ def sign_up_view(request):
 
 
 def sign_in_view(request):
-    return ''
+    if request.method == 'GET':
+        return render(request, 'user/signin.html')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        me = UserModel.objects.get(username=username, password=password)
+        if me:
+            request.session['user'] = me.username
+            return HttpResponse(f"LOGIN welcome {me.username}")
+        else:
+            return render(request, 'user/signin.html')
