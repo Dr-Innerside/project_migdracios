@@ -37,6 +37,6 @@ def sign_in_view(request):
         me = auth.authenticate(request,username=username, password=password)
         if me:
             auth.login(request, me)
-            return HttpResponse(f"LOGIN welcome {me.username}")
+            return redirect('/')
         else:
             return render(request, 'user/signin.html')
