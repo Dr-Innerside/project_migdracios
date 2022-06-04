@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import UserModel
+from django.contrib.auth import get_user_model
 
 
 # Create your views here.
@@ -13,14 +14,10 @@ def sign_up_view(request):
         password2 = request.POST.get('password2')
         bio = request.POST.get('bio')
 
-        exist_user = UserModel.objects.filter(username=username)
+        exist_user = get_user_model().objects.filter(username=username)
         if not exist_user:
             if password == password2:
-                new_user = UserModel()
-                new_user.username = username
-                new_user.password = password
-                new_user.bio = bio
-                new_user.save()
+                UserModel.objects.create_user(username=username, password=password, bio=bio)
                 return redirect('/sign-in')
             else:
                 return HttpResponse("비밀번호가 일치하지 않습니다")
