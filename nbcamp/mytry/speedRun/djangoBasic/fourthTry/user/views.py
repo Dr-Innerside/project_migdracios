@@ -14,7 +14,7 @@ def sign_up_view(request):
         bio = request.POST.get('bio')
 
         exist_user = UserModel.objects.filter(username=username)
-        if exist_user:
+        if not exist_user:
             if password == password2:
                 new_user = UserModel()
                 new_user.username = username
