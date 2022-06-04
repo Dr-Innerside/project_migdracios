@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import UserModel
 
@@ -21,13 +21,12 @@ def sign_up_view(request):
                 new_user.password = password
                 new_user.bio = bio
                 new_user.save()
+                return redirect('/sign-in')
             else:
                 return HttpResponse("비밀번호가 일치하지 않습니다")
         else:
             return HttpResponse("존재하지 않는 사용자 입니다")
-        return ''
 
-    return ''
 
 
 def sign_in_view(request):
