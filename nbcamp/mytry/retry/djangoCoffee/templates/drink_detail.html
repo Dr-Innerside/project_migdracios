@@ -5,6 +5,12 @@
     <title>드링크 디테일 페이지</title>
 </head>
 <body>
-<h2>음료 드시고 행복한 하루 되세요~</h2>
+<h2>{{ drink.name }}</h2>
+<div style="width: 400px; height: 300px;
+background-image: url({{ image.file_url }}); background-position: center; background-size: cover"></div>
+<h3>분류 : {{ drink.category }}</h3>
+<h3>영양정보 : {{ drink.nutrition }}</h3>
+<h3>알러지 : {{ drink.allergy }}</h3>
+<a href="/">돌아가기!</a>
 </body>
 </html>

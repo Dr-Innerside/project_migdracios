@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>드링크 페이요</title>
-</head>
-<body>
-<h2>드링크를 선택하세요</h2>
-</body>
-</html>
+{% extends 'category.html' %}
+
+{% block content %}
+    {% for drink in drinks %}
+        <div>
+            <a href="/drink/detail/{{ drink.id }}">{{ drink.name }}</a>
+        </div>
+    {% endfor %}
+
+{% endblock %}
