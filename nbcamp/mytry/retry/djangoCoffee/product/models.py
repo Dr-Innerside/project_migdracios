@@ -25,7 +25,7 @@ class Image(models.Model):
     class Meta:
         db_table = 'images'
     name = models.ForeignKey(Drink, on_delete=models.CASCADE)
-    file_url = models.CharField(max_length=500, null=False)
+    file_url = models.URLField(max_length=500)
 
     def __str__(self):
-        return self.name
+        return str(self.name)

@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from .models import Category, Drink, Image
 
 # Create your views here.
 def show_category(request):
-    return render(request, 'category.html')
+    categories = Category.objects.all()
+    return render(request, 'category.html', {'categories': categories})
 
 def show_drink(request):
     return render(request, 'drink.html')
