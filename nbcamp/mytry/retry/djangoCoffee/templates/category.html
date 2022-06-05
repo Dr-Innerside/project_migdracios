@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>카테고리 페이지</title>
+</head>
+<body>
+<h2>카테고리를 선택하세요</h2>
+{% for category in categories %}
+    <form method="post" action="/drink/">
+    {% csrf_token %}
+    <input type="checkbox" id="category" name="category" value="{{ category.name }}">
+    <label for="category">{{ category.name }}</label><br>
+{% endfor %}
+<input type="submit" value="Submit" style="margin-top: 20px">
+</form>
+<hr>
+{% block content %}
+{% endblock %}
+</body>
+</html>

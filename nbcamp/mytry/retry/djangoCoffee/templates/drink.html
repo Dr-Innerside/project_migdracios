@@ -1,0 +1,10 @@
+{% extends 'category.html' %}
+
+{% block content %}
+    {% for drink in drinks %}
+        <div>
+            <a href="/drink/detail/{{ drink.id }}">{{ drink.name }}</a>
+        </div>
+    {% endfor %}
+
+{% endblock %}
