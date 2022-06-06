@@ -27,6 +27,7 @@ def tweet(request):
         new_tweet.save()
         return redirect('/tweet')
 
+@login_required
 def delete_tweet(request, id):
     my_tweet = TweetModel.objects.get(id=id)
     my_tweet.delete()
@@ -49,5 +50,9 @@ def comment(request, id):
 
     return redirect(f'/tweet/{id}')
 
-def delete_comment(request):
-    return ''
+@login_required
+def delete_comment(request, id):
+    my_comment = TweetComment.objects.get(id=id)
+    tweet_id = my_comment.tweet_id
+    my_comment.delete()
+    return redirect(f'/tweet/{tweet_id}')
