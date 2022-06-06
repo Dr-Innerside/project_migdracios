@@ -18,15 +18,29 @@
 # n번째 수를 출력하는 프로그램을 만들어보자.
 
 a, d, n = map(int, input().split())
-result = 0
-while a<=n:
-    if a or d == 0:
-        continue
-    if result == 0:
-        result = 1
-        # print(result)
-        a += 1
-    result += d
-    # print(result)
-    a += 1
+# result = 0
+# while a<=n:
+#     if a or d == 0:
+#         continue
+#     if result == 0:
+#         result = 1
+#         # print(result)
+#         a += 1
+#     result += d
+#     # print(result)
+#     a += 1
+# print(result)
+
+# 1, 3, 5
+# n번째 수
+# 첫번째는 a
+for i in range(1, n+1):
+    if i == 1:
+        result = a
+    else:
+        result += d
 print(result)
+
+
+
+
