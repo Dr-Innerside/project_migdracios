@@ -16,8 +16,41 @@
 #             color.append([r,g,b])
 # print(len(color))
 
+# c1, c2, c3 = map(int, input().split())
+# colors = [(r,g,b) for r in range(c1) for g in range(c2) for b in range(c3)]
+# for c in colors:
+#     print(c)
+# print(len(colors))
+
+# --- 색의 경우의 수 --- #
+# 1. 정수 세 개를 입력 받는다
+
 c1, c2, c3 = map(int, input().split())
-colors = [(r,g,b) for r in range(c1) for g in range(c2) for b in range(c3)]
-for c in colors:
-    print(c)
-print(len(colors))
+
+# 2. 경우의 수 0 1 2 를 출력해보자
+
+# for i in range(0, c1+1):
+    # print(i)
+
+# 2. 중첩해서 0 0 을 출력해보자
+
+# for i in range(0, c1+1):
+#     for j in range(0, c2+1):
+#         print(i, j)
+
+# 3. 세 개 다 출력
+# for i in range(0, c1+1):
+#     for j in range(0, c2+1):
+#         for k in range(0, c3+1):
+#             print(i, j, k)
+
+#4. 0에서 1까지만
+#5. 출력한 경우의 수를 보여주기
+sum = 0
+for i in range(c1):
+    for j in range(c2):
+        for k in range(c3):
+            print(i, j, k)
+            sum += 1
+print(sum)
+
