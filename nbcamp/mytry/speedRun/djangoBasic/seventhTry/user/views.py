@@ -14,9 +14,9 @@ def sign_up_view(request):
         bio = request.POST.get('bio')
 
         if password == password2:
-            exist_user = get_user_model().objects.filter(username=username, password=password)
-            if exist_user:
-                UserModel().objects.create_user(username=username, password=password, bio=bio)
+            exist_user = get_user_model().objects.filter(username=username)
+            if not exist_user:
+                UserModel.objects.create_user(username=username, password=password, bio=bio)
                 return redirect('/sign-in')
             else:
                 return render(request, 'user/signup.html')
