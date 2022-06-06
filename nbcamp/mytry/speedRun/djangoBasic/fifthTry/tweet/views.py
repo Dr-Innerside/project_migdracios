@@ -11,4 +11,8 @@ def home(request):
 
 def tweet(request):
     if request.method == 'GET':
-        return render(request, 'tweet/home.html')
+        user = request.user.is_authenticated
+        if user: # 만약 로그인이 되어 있다면
+            return render(request, 'tweet/home.html')
+        else:
+            return redirect('/sign-in')
