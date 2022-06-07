@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import TweetModel
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
     user = request.user.is_authenticated
@@ -25,3 +26,9 @@ def tweet(request):
         new_tweet.save()
 
         return redirect('/tweet')
+
+@login_required
+def delete_tweet(request, id):
+    target_tweet = TweetModel.objects.get(id=id)
+    target_tweet.delete()
+    return redirect('/tweet')
