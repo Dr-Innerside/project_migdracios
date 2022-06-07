@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import TweetModel
+from .models import TweetModel, TweetComment
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
@@ -32,3 +32,14 @@ def delete_tweet(request, id):
     target_tweet = TweetModel.objects.get(id=id)
     target_tweet.delete()
     return redirect('/tweet')
+
+def detail_tweet(request, id):
+    all_comment = TweetComment.objects.filter(tweet=id).order_by('-created_at')
+    return render(request, 'tweet/tweet-detail.html', {'comment': all_comment})
+
+def write_comment(request):
+    return ''
+
+@login_required
+def delete_comment(request, id):
+    return ''
