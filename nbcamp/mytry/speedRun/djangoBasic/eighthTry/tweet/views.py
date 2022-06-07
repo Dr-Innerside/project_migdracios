@@ -47,8 +47,11 @@ def write_comment(request, id):
     new_comment.author = author
     new_comment.comment = content
     new_comment.save()
-    return redirect(f'/tweet/comment{id}')
+    return redirect(f'/tweet/{id}')
 
 @login_required
 def delete_comment(request, id):
-    return ''
+    target_comment = TweetComment.objects.get(id=id)
+    target_comment.delete()
+
+    return redirect(f'tweet/{str(target_comment.tweet)}')
