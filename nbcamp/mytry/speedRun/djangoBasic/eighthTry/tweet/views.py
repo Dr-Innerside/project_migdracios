@@ -37,8 +37,16 @@ def detail_tweet(request, id):
     all_comment = TweetComment.objects.filter(tweet=id).order_by('-created_at')
     return render(request, 'tweet/tweet-detail.html', {'comment': all_comment})
 
-def write_comment(request):
-    return ''
+def write_comment(request, id):
+    tweet = TweetModel.objects.get(id=id)
+    author = tweet.author
+    content = request.POST.get('comment')
+    new_comment = TweetComment()
+    new_comment.tweet = tweet
+    new_comment.author = author
+    new_comment.comment = content
+    new_comment.save()
+    return redirect(f'/tweet/comment{id}')
 
 @login_required
 def delete_comment(request, id):
