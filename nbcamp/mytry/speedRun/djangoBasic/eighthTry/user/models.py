@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
-class UserModel(models.Model):
+class UserModel(AbstractUser):
     class Meta:
         db_table = 'my_user'
     bio = models.CharField(max_length=500, default='')
