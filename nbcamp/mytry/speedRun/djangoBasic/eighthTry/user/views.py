@@ -24,7 +24,18 @@ def sign_up_view(request):
             return render(request, 'user/signup.html')
 
 def sign_in_view(request):
-    return render(request, 'user/signin.html')
+    if request.method == 'GET':
+        return render(request, 'user/signin.html')
+    elif request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        me = auth.authenticate(request, username = username, password=password)
+        if me:
+            auth.login(request, me)
+            return redirect('/')
+        else:
+            return render(request, 'user/signin.html')
 
 def sign_out(request):
     return ''
