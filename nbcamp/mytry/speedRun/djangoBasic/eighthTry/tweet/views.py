@@ -34,8 +34,9 @@ def delete_tweet(request, id):
     return redirect('/tweet')
 
 def detail_tweet(request, id):
+    tweet = TweetModel.objects.get(id=id)
     all_comment = TweetComment.objects.filter(tweet=id).order_by('-created_at')
-    return render(request, 'tweet/tweet-detail.html', {'comment': all_comment})
+    return render(request, 'tweet/tweet-detail.html', {'tweet': tweet, 'comment': all_comment})
 
 def write_comment(request, id):
     tweet = TweetModel.objects.get(id=id)
