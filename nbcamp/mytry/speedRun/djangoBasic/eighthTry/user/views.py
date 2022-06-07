@@ -6,7 +6,11 @@ from .models import UserModel
 # Create your views here.
 def sign_up_view(request):
     if request.method == 'GET':
-        return render(request, 'user/signup.html')
+        user = request.user.is_authenticated
+        if user:
+            return redirect('/')
+        else:
+            return render(request, 'user/signup.html')
     elif request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -25,7 +29,11 @@ def sign_up_view(request):
 
 def sign_in_view(request):
     if request.method == 'GET':
-        return render(request, 'user/signin.html')
+        user = request.user.is_authenticated
+        if user:
+            return redirect('/')
+        else:
+            return render(request, 'user/signin.html')
     elif request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
