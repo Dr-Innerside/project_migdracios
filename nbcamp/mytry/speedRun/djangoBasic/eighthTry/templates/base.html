@@ -11,7 +11,7 @@
             integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
             crossorigin="anonymous"></script>
     <style>
-				.title-center {
+        .title-center {
             text-align: center;
             margin-top: 50px;
         }
@@ -26,7 +26,7 @@
         }
 
         .timeline-container {
-            margin-top : 25px
+            margin-top: 25px
         }
     </style>
 </head>
@@ -41,16 +41,20 @@
                 </li>
             </ul>
         </div>
-        <form class="form-inline my-2 my-lg-0">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/sign-in"> Sign In <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/sign-up"> Sign Up <span class="sr-only"></span></a>
-                </li>
-            </ul>
-        </form>
+        {% if not user.is_authenticated %}
+            <form class="form-inline my-2 my-lg-0">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/sign-in"> Sign In <span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/sign-up"> Sign Up <span class="sr-only"></span></a>
+                    </li>
+                </ul>
+            </form>
+        {% else %}
+            {{ user.username }} 님 안녕하세요! <a href="/sign-out/">SIGN OUT</a>
+        {% endif %}
     </div>
 </nav>
 {% block content %}
