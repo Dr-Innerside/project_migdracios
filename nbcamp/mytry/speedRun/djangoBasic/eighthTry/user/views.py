@@ -50,3 +50,19 @@ def sign_in_view(request):
 def sign_out(request):
     auth.logout(request)
     return redirect('/')
+
+@login_required
+def user_view(request):
+    if request.method == 'GET':
+        user_list = UserModel.objects.all().exclude(username=request.user.username)
+        return render(request, 'user/user_list.html')
+
+@login_required
+def user_follow(request, id):
+    me = request.user
+    click_user = UserModel.objects.get(id=id)
+    if me in click_user.followee.all():
+        click_user.followee.remove(request.user)
+    else:
+        click_user.followee.add(request.user)
+    return redirect('/user')
