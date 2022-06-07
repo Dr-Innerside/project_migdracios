@@ -11,7 +11,7 @@ def home(request):
 def tweet(request):
     if request.method == 'GET':
         user = request.user.is_authenticated
-        all_tweet = TweetModel.objects.all()
+        all_tweet = TweetModel.objects.all().order_by('-created_at')
         if user:
             return render(request, 'tweet/home.html', {'tweet': all_tweet})
         else:
