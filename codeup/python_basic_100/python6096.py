@@ -42,21 +42,70 @@
 
 # for i in board:
 #     print(i)
-print('input Board')
-board = [[input()] for i in range(20)]
+# print('input Board')
+# board = [[input()] for i in range(0, 19)]
+# # print(board)
 # for a in board:
 #     print(a)
-print('input count')
+# # print('input count')
+# count = int(input())
+# for setNum in range(count):
+#     # print('input setNum')
+#     x, y = map(int, input().split())
+#     for i in range(0,19):
+#         for j in range(0,19):
+#             print(board[x][j])
+#             print(board[i])
+#             if board[x][j] == 0:
+#                 board[x][j] = 1
+#             if board[i][y] == 0:
+#                 board[i][y] = 1
+#     for j in range(1, 20):
+#         print(board[i][j], end=' ')
+#     print()
+
+# board = [map(int, input().split()) for j in range(0,19)] for i in range(0, 19)]
+# print(board[0])
+# count = int(input())
+# for i in range(count):
+#     x,y = map(int, input().split())
+
+# a = list(map(int, input().split()))
+# for b in a:
+#     print(b)
+
+board = [list(map(int, input().split())) for i in range(19)]
+print()
+# for i in range(1,19):
+#     # print('print please')
+#     for j in range(1,19):
+#         print(board[i][j], end= ' ')
+#     print()
+print('='*40)
+
 count = int(input())
-for setNum in range(count):
-    print('input setNum')
-    x, y = map(int, input().split())
-    for i in range(20):
-        for j in range(20):
-            if board[x][j] == 0:
-                board[x][j] = 1
-            if board[i][y] == 0:
-                board[i][y] = 1
-    for j in range(1, 20):
-        print(board[i][j], end=' ')
+for i in range(count):
+    x,y = map(int, input().split())
+    # print(f'x->{x}, y->{y},  {board[x][y]}')
+    print(f'{i} try')
+    for run in range(1,19):
+        print(f'set->{run, y-1}, boardNum->{board[run][y-1]}')
+        if board[run][y-1] == 1:
+            board[run][y-1] = 0
+        elif board[run][y - 1] == 0:
+            board[run][y - 1] = 1
+        print(f'complete->{run, y-1}, boardNum->{board[run][y - 1]}')
+
+        print(f'set->{x-1, run}, boardNum->{board[x-1][run]}')
+        if board[x-1][run] == 1:
+            board[x-1][run] = 0
+        elif board[x - 1][run] == 0:
+            board[x - 1][run] = 1
+        print(f'complete->{x-1, run}, boardNum->{board[x - 1][run]}')
+
+
+print('print please')
+for i in range(1,19):
+    for j in range(1,19):
+        print(board[i][j], end= ' ')
     print()
