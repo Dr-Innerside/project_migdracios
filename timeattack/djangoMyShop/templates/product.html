@@ -1,0 +1,13 @@
+{% extends 'cate.html' %}
+
+{% block products %}
+    <hr>
+    <h3>PRODUCTS</h3>
+    {% for prod in product_list %}
+        <img src="../static/image/{{ prod.image }}">
+        <h2>{{ prod.name }}</h2>
+        <h4>{{ prod.desc }}</h4>
+        <a href="/product/{{ prod.id }}">주문하기</a>
+        <hr>
+    {% endfor %}
+{% endblock %}

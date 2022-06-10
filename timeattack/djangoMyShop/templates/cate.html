@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyShop</title>
+</head>
+<body>
+<h3>Category</h3>
+{% for cate in categories %}
+    <h2 style="margin-top: 10px"><a href="/category/{{ cate.id }}">{{ cate.category }}</a></h2>
+{% endfor %}
+{% block products %}
+{% endblock %}
+</body>
+</html>
