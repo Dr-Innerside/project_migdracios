@@ -6,7 +6,7 @@ class Category(models.Model):
         db_table='categories'
     def __str__(self):
         return self.category
-    categories = models.CharField(max_length=30, null=False)
+    category = models.CharField(max_length=30, null=False)
 
 class Product(models.Model):
     class Meta:
@@ -24,12 +24,10 @@ class OrderStatus(models.Model):
     class Meta:
         db_table='order_status'
 
-    buyer = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-    product_name = models.ForeignKey(Product, on_delete=models.CASCADE)
     order_status = models.CharField(max_length=10)
 
     def __str__(self):
-        return self.product_name
+        return self.order_status
 
 
 class UserOrder(models.Model):
