@@ -38,10 +38,10 @@ class UserOrder(models.Model):
     buyer = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     address = models.CharField(max_length=100)
     order_time = models.DateTimeField(auto_now_add=True)
-    total_price = models.CharField()
-    discont_per = models.CharField()
-    final_price = models.CharField()
-    order_bool = models.CharField()
+    total_price = models.CharField(max_length=10)
+    discont_per = models.CharField(max_length=10)
+    final_price = models.CharField(max_length=10)
+    order_bool = models.CharField(max_length=10)
 
     def __str__(self):
         return self.buyer
@@ -51,7 +51,7 @@ class ProductOrder(models.Model):
         db_table = 'product_orders'
     buyer = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    
+
 
 
 
