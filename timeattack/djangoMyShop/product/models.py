@@ -1,5 +1,5 @@
 from django.db import models
-
+from user.models import UserModel
 # Create your models here.
 class Category(models.Model):
     class Meta:
@@ -24,10 +24,35 @@ class OrderStatus(models.Model):
     class Meta:
         db_table='order_status'
 
+    buyer = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     product_name = models.ForeignKey(Product, on_delete=models.CASCADE)
     order_status = models.CharField(max_length=10)
 
     def __str__(self):
         return self.product_name
+
+
+class UserOrder(models.Model):
+    class Meta:
+        db_table = 'user_orders'
+    buyer = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    address = models.CharField(max_length=100)
+    order_time = models.DateTimeField(auto_now_add=True)
+    total_price = models.CharField()
+    discont_per = models.CharField()
+    final_price = models.CharField()
+    order_bool = models.CharField()
+
+    def __str__(self):
+        return self.buyer
+
+class ProductOrder(models.Model):
+    class Meta:
+        db_table = 'product_orders'
+    buyer = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     
+
+
+
 
