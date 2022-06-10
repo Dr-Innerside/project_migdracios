@@ -12,3 +12,10 @@ def show_products(request, id):
         product_list = Product.objects.filter(category=id)
         return render(request, 'product.html', {'categories':all_cate, 'product_list': product_list})
 
+def make_orders(request, id):
+    if request.method == 'GET':
+        item = request.GET
+        print(f'product->{item}')
+        item = Product.objects.get(name=item)
+
+        return render(request, 'order.html', item)
