@@ -1,6 +1,11 @@
 # 6096 번 모범답안
 
 # 빈 리스트 선언
+from calendar import c
+from cmath import e
+from pyrsistent import b
+
+
 d=[]
 # 20X20 크기의 0이 담겨있는 리스트[리스트[0]] d생성
 # 1,1을 만들기 위해서 비어있는 0번째를 포함하여 생성
@@ -46,3 +51,9 @@ for i in range(1, 20) :
   for j in range(1, 20) :
     print(d[i][j], end=' ')
   print()
+
+
+
+
+
+

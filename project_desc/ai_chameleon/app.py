@@ -27,23 +27,31 @@ import model
 import emotion_sq
 
 
-# -- Flask Initial Set Up --
-# - 플라스크 서버를 기동하기 위한 초기 설정 : 플라스크 기능을 사용해 시동할 app 변수 만들기 - 
+# ---- 서버 전체 참조 코드 ----
+
+# --- Flask Initial Set Up ---
+# -- 플라스크 서버를 기동하기 위한 초기 설정 : 플라스크 기능을 사용해 시동할 app 변수 만들기 --
 app = Flask(__name__)
 
-# -- CORS Access-Control-Allow-Origin Set Up --
-# - 다른 포트의 프론트와 백엔드를 연결하는 과정에서 발생하는 CORS 에러를 해결하기 위한 코드
-# - Access-Control-Allow-Origin 값을 모든 곳에 보내주어 CORS 에러를 방지하기 (모든 곳에 보내주기 때문에 차후에는 변경해야함!)
+# --- CORS Access-Control-Allow-Origin Set Up ---
+# -- 다른 포트의 프론트와 백엔드를 연결하는 과정에서 발생하는 CORS 에러를 해결하기 위한 코드 --
+# -- Access-Control-Allow-Origin 값을 모든 곳에 보내주어 CORS 에러를 방지하기 (모든 곳에 보내주기 때문에 차후에는 변경해야함!) --
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 
-
+# --- Pymongo Initial Set Up ---
+# -- 데이터베이스 서버인 MongoDB와 웹 서버인 Flask 를 연결하기 위한 코드 --
+# -- MongoClient 메서드를 사용하여 클라이언트의 이름과 포트번호를 정해준다 --
+# -- 아래 코드는 로컬 환경에서 Robo,Studio 3T를 활용한 코드로, 몽고 클라우드 혹은 배포용 서버에서 사용하는 코드는 상이하다 --
 client = MongoClient('localhost', 27017)
+# - 선언한 클라이언트 변수의 컬렉션 이름을 정해주는 코드 --
 db = client.chameleon
 
-recent_selfie_id = None
-filename = ""
 
 
+# ---- API : Initial frame ----
+# --- 백엔드 서버 API에 진입할 때 필요한 코드 프레임. 실제 프로젝트에는 사용하지 않았음 ---
+
+# 
 @app.route('/')
 def home():
 
