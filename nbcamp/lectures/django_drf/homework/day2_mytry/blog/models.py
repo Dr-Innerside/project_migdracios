@@ -16,3 +16,6 @@ class Article(models.Model):
     title = models.CharField(max_length=20)
     category = models.ManyToManyField(Category, verbose_name="category")
     content = models.TextField()
+
+    def __str__(self):
+        return f'{self.title}--by.{self.author}'
