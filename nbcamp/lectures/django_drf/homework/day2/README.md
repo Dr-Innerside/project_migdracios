@@ -2,7 +2,7 @@
 ---
 ## 2일차 
 ---
-1. Django 프로젝트를 생성하고, user 라는 앱을 만들어서 settings.py 에 등록해보세요.
+1. Django 프로젝트를 생성하고, user 라는 앱을 만들어서 settings.py 에 등록해보세요. [ x ]
 2. user/models.py에 `Custom user model`을 생성한 후 django에서 user table을 생성 한 모델로 사용할 수 있도록 설정해주세요
 3. user/models.py에 사용자의 상세 정보를 저장할 수 있는 `UserProfile` 이라는 모델을 생성해주세요
 4. blog라는 앱을 만든 후 settings.py에 등록해주세요
