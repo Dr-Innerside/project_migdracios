@@ -12,7 +12,7 @@ class Category(models.Model):
         return self.name
 
 class Article(models.Model):
-    author = models.CharField(max_length=20)
+    author = models.ForeignKey('user.User', verbose_name='author', on_delete=models.CASCADE)
     title = models.CharField(max_length=20)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ManyToManyField(Category, verbose_name="category")
     content = models.TextField()
