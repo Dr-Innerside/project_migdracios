@@ -71,7 +71,6 @@ class UserProfile(models.Model):
     introduction = models.TextField("자기소개", null=True, blank=True)
     birthday = models.DateField("생일")
     age = models.IntegerField("나이")
-    hobby = models.ManyToManyField(Hobby, verbose_name="취미")
 
     def __str__(self):
         return f"{self.user.username} 님의 프로필입니다."
