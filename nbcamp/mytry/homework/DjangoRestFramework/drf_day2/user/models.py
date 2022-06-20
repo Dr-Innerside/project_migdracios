@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 # Create your models here.
+
+# 사용자 매니저
 class UserManager(BaseUserManager):
     def create_user(self, username, password=None):
         if not username:
@@ -22,6 +24,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+# 사용자 모델
 class User(AbstractBaseUser):
     username = models.CharField("아이디", max_length=50, unique=True)
     password = models.CharField("비밀번호", max_length=128)
@@ -53,6 +56,7 @@ class User(AbstractBaseUser):
 
     objects= UserManager()
 
+# 사용자 프로필
 class UserProfile(models.Model):
     user = models.OneToOneField(User, verbose_name="사용자 프로필", on_delete=models.CASCADE)
     age = models.IntegerField("나이")
@@ -60,4 +64,3 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.user.username}의 프로필이지롱?!"
-
