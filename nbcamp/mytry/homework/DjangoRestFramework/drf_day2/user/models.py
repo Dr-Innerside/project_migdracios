@@ -53,5 +53,11 @@ class User(AbstractBaseUser):
 
     objects= UserManager()
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, verbose_name="사용자 프로필", on_delete=models.CASCADE)
+    age = models.IntegerField("나이")
+    introduction = models.TextField("자기소개")
 
+    def __str__(self):
+        return f"{self.user.username}의 프로필이지롱?!"
 
