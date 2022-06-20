@@ -4,10 +4,18 @@ from rest_framework import permissions
 from django.contrib.auth import login, logout, authenticate
 from rest_framework.response import Response
 
+from .models import User as UserModel
+from blog.models import Article as ArticleModel
+
 # Create your views here.
 
 class UserAPIVIew(APIView):
     permission_classes = [permissions.AllowAny]
+
+    def get(self, request):
+        user = request.user
+        target_article = ArticleModel.objects.filter(author=user)[0].title
+        return Response({"title": target_article})
 
     def post(self, request):
         username = request.data.get('username', '')
