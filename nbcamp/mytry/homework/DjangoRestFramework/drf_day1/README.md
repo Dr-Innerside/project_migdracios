@@ -10,6 +10,35 @@
  4. django에서 queryset과 object는 어떻게 다른지 서술하기
 
 ## 1번과제. args, kwargs를 사용하는 예제 코드 짜보기
+```python
+# 1. args, kwargs를 사용하는 예제 코드 짜보기
+
+list_ = [1,2,3,4,5]
+print(f"list_->{list_}")
+print(*list_)
+
+def sum_input(*args):
+    return sum(args)
+
+sum_result = sum_input(*list_)
+print(f"input args and result is ->{sum_result}")
+
+dict_ = {
+    "name": "yungsang",
+    "age": 29,
+    "stuborn": True
+}
+print(f"dict_->{dict_}")
+# print(**dict_)
+
+def who(**kwargs):
+    name = kwargs["name"]
+    age = kwargs["age"]
+    stuborn = kwargs["stuborn"]
+    print(f"This is {name}, age is {age}, stuborn is {stuborn}")
+
+who(**dict_)
+```
 ## 2번과제. mutable과 immutable은 어떤 특성이 있고, 어떤 자료형이 어디에 해당하는지 서술하기
 1. mutable
     - 값을 변경할 수 있는 자료형
