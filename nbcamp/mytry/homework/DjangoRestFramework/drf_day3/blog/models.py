@@ -25,3 +25,12 @@ class Article(models.Model):
     def __str__(self):
         return f"{self.author.username}의 {self.title}입니다."
     
+# 블로그 코멘트 모델
+class Comment(models.Model):
+    article = models.ForeignKey(Article, verbose_name="게시글", on_delete=models.CASCADE)
+    commenter = models.ForeignKey(User, verbose_name="사용자", on_delete=models.CASCADE)
+    comment_content = models.TextField("내용")
+
+    def __str__(self):
+        return f"{self.article}에 작성된 {self.commenter}의 댓글"
+
