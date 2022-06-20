@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from .models import User as UserModel
 from blog.models import Article as ArticleModel
 
+from .serializers import UserSerializer
+
 # Create your views here.
 
 # 사용자 정보 조회
@@ -21,8 +23,8 @@ class UserView(APIView):
         2. 사용자 상세정보
         를 가져온다!
         '''
-        
-        pass
+        return Response(UserSerializer(request.user).data)
+
     def post(self, request):
         pass
     def put(self, request):
