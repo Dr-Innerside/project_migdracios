@@ -9,6 +9,28 @@ from blog.models import Article as ArticleModel
 
 # Create your views here.
 
+# 사용자 정보 조회
+class UserView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    # 사용자 정보 조회
+    def get(self, request):
+        '''
+        Serializer를 사용하여
+        1. 사용자 기본정보
+        2. 사용자 상세정보
+        를 가져온다!
+        '''
+        
+        pass
+    def post(self, request):
+        pass
+    def put(self, request):
+        pass
+    def delete(self, request):
+        pass
+
+
 class UserAPIVIew(APIView):
     permission_classes = [permissions.AllowAny]
 
