@@ -77,7 +77,7 @@ class ArticleSerializer(serializers.ModelSerializer):
                     "comment_content" : target_comment.comment_content
                 }
             )
-        print(comment_list)
+        # print(comment_list)
         return comment_list
 
         # return [target_comment for target_comment in obj.comment_set.all()]
