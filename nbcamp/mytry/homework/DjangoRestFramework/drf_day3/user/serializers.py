@@ -56,7 +56,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     이름과 카테고리 이름을 보냄
     """
 
-    print("=====카테고리 시리얼라이저=====")
+    # print("=====카테고리 시리얼라이저=====")
     
     author = UserSerializer()
     category = CategorySerializer(many=True)
