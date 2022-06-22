@@ -29,45 +29,69 @@ DRF 프로젝트의 전체 설정 및 권한, url접근에 관한 내용이 작�
 
 ### 💾 user
 user APP에서는 사용자의 정보와 관련된 기능이 작성되어 있다.
-    - 📌 admin.py
-        - admin 페이지에서 user APP에서 작성 된 내용을 확인할 수 있도록 커스텀 하는 내용이 작성되어 있다.
-            - admin 페이지에서 보여줄 model을 등록한다.
-                - admin.site.register()가 해당
-            - 커스텀 admin 페이지로 추가적으로 보여줄 내용을 작성한다.
-                - class UserAdmin, UserProfileInline이 해당
-    - 📌 models.py
-        - user APP에서 사용할 데이터베이스와 관련한 모델을 작성한다.
-            - class User는 사용자 기본정보 모델에 해당한다.
-            - class UserManager는 사용자 레코드 작성에 해당한다.
-            - class Hobby는 사용자 취미 모델에 해당한다.
-            - class UserProfile은 사용자 상세정보 모델에 해당한다.
-    - 📌 urls.py
-        - 통합환경, POSTMAN 등에서 user APP에 접근할 URL을 작성한다.
-        - urlpattens 리스트 안에 path()를 작성한다.
-            - 'login/'과 같이 실제 접근할 url을 작성한다.
-            - views.클래스(혹은 함수)를 작성하여 해당 url에 접근하면 작동할 클래스 및 함수를 선언한다.
-            - 추가로 name을 작성하여 url을 특정할 수 있다.
-        - user/로 시작하여 작성된 url을 추가하여 user/login/ 과 같이 접근하게 된다.
-    - 📌 views.py
-        - user APP에서 사용될 API의 로직의 전반적인 부분이 작성되어 있다.
-        - class UserView는 localhost:8000/user/ 로 접근하여 사용자 조회/회원가입/회원정보 수정/회원탈퇴 기능이 http Method get/post/put/delete로 구분하여 작성되어 있다.
-        - class UserAPIView는 localhost:8000/user/login/ 으로 접근하여 로그인/로그아웃 기능이 http Method post/delete로 구분하여 작성되어 있다.
-    - 📌 serializers.py
-        - user APP의 views에서 요청한 데이터베이스 레코드를 참조/역참조 및 정제하여 돌려주는 기능을 담당한다.
-        - HobbySerializer는 사용자 모델 Hobby를 가져와 돌려줄 필드를 설정해 정제한다.
-            - 취미를 선택한 사용자를 역참조하여 리턴할 필드에 추가되어 있다.
-        - UserProfileSerializer는 사용자 모델 UserProfile을 가져와 돌려줄 필드를 설정해 정제한다.
-            - HobbySerializer를 필드로 가져와 추가되어 있다.
-            - serializer.ListField를 필드로 가져와 get_hobbys로 추가되어 있다.
-        - UserSerializer는 사용자 모델 User를 가져와 돌려줄 필드를 설정해 정제한다.
-            - UserProfileSerializer, ArticleSerializer를 가져와 필드에 추가되어 있다.
-            - def validation이 작성되어 있다.
-            - def create가 작성되어 있다.
-            - def update가 작성되어 있다.
-            - 사용되는 필드마다 적용할 옵션을 extra_kwargs에 지정되어 있다.
+- 📌 admin.py
+    - admin 페이지에서 user APP에서 작성 된 내용을 확인할 수 있도록 커스텀 하는 내용이 작성되어 있다.
+        - admin 페이지에서 보여줄 model을 등록한다.
+            - admin.site.register()가 해당
+        - 커스텀 admin 페이지로 추가적으로 보여줄 내용을 작성한다.
+            - class UserAdmin, UserProfileInline이 해당
+- 📌 models.py
+    - user APP에서 사용할 데이터베이스와 관련한 모델을 작성한다.
+        - class User는 사용자 기본정보 모델에 해당한다.
+        - class UserManager는 사용자 레코드 작성에 해당한다.
+        - class Hobby는 사용자 취미 모델에 해당한다.
+        - class UserProfile은 사용자 상세정보 모델에 해당한다.
+- 📌 urls.py
+    - 통합환경, POSTMAN 등에서 user APP에 접근할 URL을 작성한다.
+    - urlpattens 리스트 안에 path()를 작성한다.
+        - 'login/'과 같이 실제 접근할 url을 작성한다.
+        - views.클래스(혹은 함수)를 작성하여 해당 url에 접근하면 작동할 클래스 및 함수를 선언한다.
+        - 추가로 name을 작성하여 url을 특정할 수 있다.
+    - user/로 시작하여 작성된 url을 추가하여 user/login/ 과 같이 접근하게 된다.
+- 📌 views.py
+    - user APP에서 사용될 API의 로직의 전반적인 부분이 작성되어 있다.
+    - class UserView는 localhost:8000/user/ 로 접근하여 사용자 조회/회원가입/회원정보 수정/회원탈퇴 기능이 http Method get/post/put/delete로 구분하여 작성되어 있다.
+    - class UserAPIView는 localhost:8000/user/login/ 으로 접근하여 로그인/로그아웃 기능이 http Method post/delete로 구분하여 작성되어 있다.
+- 📌 serializers.py
+    - user APP의 views에서 요청한 데이터베이스 레코드를 참조/역참조 및 정제하여 돌려주는 기능을 담당한다.
+    - HobbySerializer는 사용자 모델 Hobby를 가져와 돌려줄 필드를 설정해 정제한다.
+        - 취미를 선택한 사용자를 역참조하여 리턴할 필드에 추가되어 있다.
+    - UserProfileSerializer는 사용자 모델 UserProfile을 가져와 돌려줄 필드를 설정해 정제한다.
+        - HobbySerializer를 필드로 가져와 추가되어 있다.
+        - serializer.ListField를 필드로 가져와 get_hobbys로 추가되어 있다.
+    - UserSerializer는 사용자 모델 User를 가져와 돌려줄 필드를 설정해 정제한다.
+        - UserProfileSerializer, ArticleSerializer를 가져와 필드에 추가되어 있다.
+        - def validation이 작성되어 있다.
+        - def create가 작성되어 있다.
+        - def update가 작성되어 있다.
+        - 사용되는 필드마다 적용할 옵션을 extra_kwargs에 지정되어 있다.
         
 
 ### 💾 blog
+blog APP에서는 게시글 정보와 관련된 기능이 작성되어 있다.
+- 📌 admin.py
+    - 어드민 페이지에 등록할 테이블이 추가되어 있다.
+    - admin.site.register(모델이름) 처럼 작성하여 Category, Article, Comment 모델을 어드민 페이지에 추가한다.
+- 📌 models.py
+    - 게시글과 관련된 데이터베이스 모델이 작성되어 있다.
+    - class Category는 게시글 카테고리와 관련된 모델이다.
+    - class Article은 게시글과 관련된 모델이다.
+    - class Comment는 게시글 코멘트와 관련된 모델이다.
+- 📌 urls.py
+    - 게시글 관련된 view에 접근할 url이 작성되어 있다.
+- 📌 views.py
+    - 게시글과 관련된 API의 로직이 작성되어 있다.
+    - class ArticleView는 게시글 조회/작성이 HTTP METHOD get/post로 나뉘어 작성되어 있다.
+    - class CommentView는 코멘트 조회/작성이 HTTP METHOD get/post로 나뉘어 작성되어 있다.
+- 📌 serializers.py
+    - blog/views.py에 작성된 API에서 불러올 데이터를 정제하는 것이 작성되어 있다.
+    - class CommentSerializer는 blog/models.py에 작성된 CommentModel을 참조하여 필드를 선정하여 데이터를 반환한다.
+        - get_user 함수를 사용하여 코멘트를 작성한 사용자를 참조한다.
+    - class ArticleSeirlaizer는 blog/models.py에 작성된 ArticleModel을 참조하여 데이터를 반환한다.
+        - ManyToMany관계인 Category모델을 참조하여 필드에 추가되었다.
+        - get_category 함수를 사용하여 카테고리를 선택한 게시글을 역참조하여 데이터를 반환한다.
+        - extra_kwargs를 사용하여 각 필드에 해당하는 옵션을 지정한다.
+
 ### 💾 product
 
 ## 🎯 Django Project
