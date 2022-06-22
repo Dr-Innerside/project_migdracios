@@ -93,7 +93,22 @@ blog APP에서는 게시글 정보와 관련된 기능이 작성되어 있다.
         - extra_kwargs를 사용하여 각 필드에 해당하는 옵션을 지정한다.
 
 ### 💾 product
-
+product APP에서는 쇼핑몰에 사용되는 상품과 관련된 기능이 작성되어 있다.
+- 📌 admin.py
+    - product 모델을 어드민페이지에서 조회할 수 있도록 등록되어 있다.
+- 📌 models.py
+    - 상품 모델인 class Product가 작성되어 있다.
+- 📌 urls.py
+    - product/로 시작하는 url이 작성되어 있다.
+        - ProductView라는 view를 product/에서 조회한다.
+        - 오브젝트 id를 참조하는 ProductView를 product/<obj_id>/에서 조회한다.
+- 📌 views.py
+    - 상품 조회/등록/수정/삭제와 관련한 API가 작성되어 있다.
+    - ProductView라는 클래스에서 HTTP METHOD get/post/put/delete로 구분되어 각 기능이 메서드에 맞게 작성되어 있다.
+- 📌 serializers.py
+    - 상품 모델 Product 에서 보내줄 데이터를 정제한다.
+    - class ProductSerializer에 작성되어 있다.
+        - 모델 내부의 모든 필드를 참조한다.
 ## 🎯 Django Project
 ### 💾permissions.py
 #### 👨‍💻 **class RegistedMoreThanThreeDaysUser**
