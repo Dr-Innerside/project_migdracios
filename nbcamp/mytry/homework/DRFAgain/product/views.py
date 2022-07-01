@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from product.models import Product
+from product.models import Product as ProductModel
 
 from .serializers import ProductSerializer
 from datetime import datetime
@@ -14,8 +14,32 @@ from django.db.models.query_utils import Q
 class ProductView(APIView):
     
     def get(self, request):
-        query_data = Q(exposure_start_date__lte=datetime.now()) & Q(exposure_end_date__gte=datetime.now()) & Q(author=request.user) 
-        products = Product.objects.filter(query_data)
+        # query = Q()
+        # query &= Q(exposure_start_date__lte=datetime.now())
+        # query &= Q(exposure_end_date__gte=datetime.now())
+        # query &= Q(author=request.user)
+        # query &= Q(is_active=True)
+
+        query_data = Q()
+        query_data.add(Q(exposure_start_date__lte=datetime.now()), Q.AND)
+        query_data.add(Q(exposure_end_date__gte=datetime.now()), Q.AND)
+        query_data.add(Q(author=request.user.id), Q.AND)
+        query_data.add(Q(is_active=True), Q.AND)
+        # 고고고고고고고고고고고고고고 자동 저장 서버 과부하 짱!
+        # 지금 다시 ㄲㄲㄲㄱㄱㄲㄲㄲ
+        # ????????🚀🚀🚀🚀🚀
+        # = SELECT * FROM productmodels WHERE (exposure_start_date <= now AND exposure_end_date>=now AND (author=request.user OR is_active=TRUE))
+
+
+        
+        # today=datetime.now()
+        # products = ProductModel.objects.filter(
+        #     Q(exposure_end_date__gte=today, is_active=True)|
+        #     Q(author=request.user)
+        # )
+        
+            
+        products = ProductModel.objects.filter(query_data)
         serializer = ProductSerializer(products, many=True).data
         return Response(serializer)
 
