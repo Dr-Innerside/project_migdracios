@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework import permissions, status
 
 from .models import (
+    EnrollStatus,
     JobPostSkillSet,
     JobType,
     JobPost,
@@ -80,8 +81,19 @@ class StatusView(APIView):
     authentication_classes = [JWTAuthentication]
         
     def get(self, request):
+        enroll_status = EnrollStatus.objects.all()
+        enroll_status = {
+            "worker" : enroll_status.worker,
+            "job_post" : enroll_status.job_post    
+        }
+        
+        print(f"enroll_status->{enroll_status}")
+        return Response()
+    
+    def post(self, request):
         request.data['worker'] = request.user
         request.data['job_post'] = JobPost.objects.get(id=request.data['job_post'])
-        return Response(EnrollStatusSerializer(request.data).data)
-    
-    
+        serializer = EnrollStatusSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        return Response({"message":"지원에 성공했습니다."})

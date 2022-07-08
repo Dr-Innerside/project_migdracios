@@ -7,5 +7,5 @@ urlpatterns = [
 
     path('job', JobView.as_view()),
     
-    path('enroll', StatusView.as_view()),
+    path('apply', StatusView.as_view()),
 ]
