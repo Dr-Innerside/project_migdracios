@@ -58,11 +58,11 @@ class BusinessArea(models.Model):
 
 class ApplyJobpost(models.Model):
     user = models.ForeignKey('user.User', on_delete=models.CASCADE)
-    jobpost = models.ForeignKey('post.Jobpost', on_delete=models.CASCADE)
+    job_post = models.ForeignKey('post.Jobpost', on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
         db_table = 'apply_jobpost'
     
     def __str__(self):
-        return f"{self.user.username}이 지원한 채용공고는 {self.jobpost}입니다."
+        return f"{self.user.username}이 지원한 채용공고는 {self.job_post}입니다."

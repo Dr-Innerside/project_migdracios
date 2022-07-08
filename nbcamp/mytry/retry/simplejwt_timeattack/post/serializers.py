@@ -7,7 +7,8 @@ from .models import (
     JobPost,
     Company,
     CompanyBusinessArea,
-    BusinessArea
+    BusinessArea,
+    ApplyJobpost
 )
 
 
@@ -77,3 +78,9 @@ class JobPostSkillSetSerializer(serializers.ModelSerializer):
     class Meta:
         model = JobPostSkillSet
         fields = ('id', 'skill_set', 'job_post')
+
+class ApplyJobPostSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ApplyJobpost
+        fields = '__all__'
