@@ -67,11 +67,21 @@ class JobView(APIView):
             return Response(status=status.HTTP_200_OK)
 
         return Response(job_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+    
+    
 
 from .serializers import EnrollStatusSerializer
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 class StatusView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+        
     def get(self, request):
-        print(f"사용자 정보->{request.user.id}")
-        print(f"채용공고-> {request.data['job_post']}")
+        request.data['worker'] = request.user
+        request.data['job_post'] = JobPost.objects.get(id=request.data['job_post'])
         return Response(EnrollStatusSerializer(request.data).data)
+    
+    

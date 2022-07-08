@@ -57,11 +57,11 @@ class BusinessArea(models.Model):
 
 class EnrollStatus(models.Model):
     worker = models.ForeignKey("user.User", verbose_name="지원자", on_delete=models.CASCADE)
-    jobpost = models.ForeignKey("post.Jobpost", verbose_name="채용공고", on_delete=models.CASCADE)
+    job_post = models.ForeignKey("post.Jobpost", verbose_name="채용공고", on_delete=models.CASCADE)
     
     class Meta:
         db_table = 'enroll_status'
         
     def __str__(self):
-        return f"{self.worker} 님이 지원한 채용공고는 {self.jobpost}입니다"
+        return f"{self.worker} 님이 지원한 채용공고는 {self.job_post}입니다"
     
