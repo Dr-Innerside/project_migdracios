@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>우린 할 수 있습니다!! 좋아요 만들어 냅니다!</title>
+    </head>
+    <body>
+        <h1>여기는 회원가입</h1>
+
+        <form method='post' action='/user/signup/'>
+        {% csrf_token %}
+        <div class="login-id">
+        </div>
+        <div class="login-password">
+            <input
+                    class="form-control"
+                    type="text"
+                    id="id"
+                    name="id"
+                    placeholder="아이디"
+            />
+            
+            <input
+                    class="form-control"
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="비밀번호"
+            />
+        <button type="submit" >회원가입</button>
+        </form>
+        
+        
+    </body>
+</html>

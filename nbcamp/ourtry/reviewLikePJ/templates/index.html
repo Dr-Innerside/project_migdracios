@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>우린 할 수 있습니다!! 좋아요 만들어 냅니다!</title>
+    </head>
+    <body>
+        <h1>자 여기서 시작하지</h1>
+        {{user}} 님 안냐세여
+
+        <a href="signin/">로그인페이지로 이동</a>
+        <a href="signup/">회원가입페이지로 이동</a>
+        
+        <form method='post' action='user/like/{{user.id}}'>
+            {% csrf_token %}
+            <button type='submit'> 좋아요 </button>
+        </form>
+        
+        
+        
+    </body>
+</html>
