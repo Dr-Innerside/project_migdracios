@@ -11,6 +11,9 @@ from .models import (
 from .serializers import JobPostSerializer, ApplyJobPostSerializer
 from django.db.models.query_utils import Q
 
+from post.permissions import OnlyCandidate
+
+
 
 class SkillView(APIView):
     permission_classes = [permissions.AllowAny]
@@ -67,8 +70,11 @@ class JobView(APIView):
             return Response(status=status.HTTP_200_OK)
 
         return Response(job_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
 
 class ApplyView(APIView):
+    permission_classes = [OnlyCandidate]
     def post(self, request):
         request.data['user'] = request.user.id
         apply_serializer = ApplyJobPostSerializer(data=request.data)
