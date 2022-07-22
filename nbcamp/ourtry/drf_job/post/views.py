@@ -7,7 +7,8 @@ from .models import (
     JobPostSkillSet,
     JobType,
     JobPost,
-    Company
+    Company,
+    JobStatus,
 )
 from .permissions import IsCandidateUser
 from .serializers import JobPostSerializer, JobPostActivitySerializer
@@ -79,7 +80,8 @@ class ApplyView(APIView):
         request.data['user']= request.user.id
         apply_serialzer = JobPostActivitySerializer(data=request.data)
         if apply_serialzer.is_valid():
-            apply_serialzer.save()
+            default_apply_status = JobStatus.objects.get(status="submitted")
+            apply_serialzer.save(apply_status=default_apply_status)
             return Response(status=status.HTTP_200_OK)
 
         return Response(apply_serialzer.errors, status=status.HTTP_400_BAD_REQUEST)
