@@ -64,6 +64,13 @@ class ApplyStatus(models.Model):
         db_table = 'apply_status'
     def __str__(self):
         return self.status
+    
+class RecruitStatus(models.Model):
+    status = models.CharField("채용확인 상태", max_length=40)
+    class Meta:
+        db_table = 'recruit_status'
+    def __str__(self):
+        return self.status
 
 
 class JobPostActivity(models.Model):
@@ -71,6 +78,7 @@ class JobPostActivity(models.Model):
     job_post = models.ForeignKey(JobPost, on_delete=models.CASCADE, null=True)
     apply_date = models.DateTimeField(auto_now_add=True)
     status = models.ForeignKey(ApplyStatus, on_delete=models.SET_NULL, null=True)
+    recruit_status = models.ForeignKey(RecruitStatus, on_delete=models.SET_NULL, null=True)
 
     class Meta:
         db_table = "job_post_activity"
