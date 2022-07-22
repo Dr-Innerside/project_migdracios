@@ -4,10 +4,12 @@ from rest_framework import permissions, status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .models import (
+    JobPostActivity,
     JobPostSkillSet,
     JobType,
     JobPost,
-    Company
+    Company,
+    ApplyStatus
 )
 from .permissions import IsCandidateUser
 from .serializers import JobPostSerializer, JobPostActivitySerializer
@@ -74,6 +76,17 @@ class JobView(APIView):
 class ApplyView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsCandidateUser]
+    
+    def get(self, request):
+        apply_status = request.GET.get('status')
+        apply_status = ApplyStatus.objects.get(status=apply_status)
+        print(f"지원상태->{apply_status}")
+        target_activity = JobPostActivity.objects.get(status=apply_status)
+        print(f"타겟활동->{target_activity}")
+        activity_serializer = JobPostActivitySerializer(target_activity).data
+        
+        
+        return Response(activity_serializer)
 
     def post(self, request):
         request.data['user']= request.user.id
