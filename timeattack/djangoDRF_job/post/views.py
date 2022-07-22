@@ -3,6 +3,8 @@ from rest_framework.views import APIView
 from rest_framework import permissions, status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
+from user.models import User as UserModel
+
 from .models import (
     JobPostActivity,
     JobPostSkillSet,
@@ -78,6 +80,7 @@ class ApplyView(APIView):
     permission_classes = [IsCandidateUser]
     
     def get(self, request):
+        print(f"유저확인 ->{UserModel.objects.get(id=1)}")
         apply_status = request.GET.get('status')
         apply_status = ApplyStatus.objects.get(status=apply_status)
         print(f"지원상태->{apply_status}")
