@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import CharField
 
 from user.models import User
 
@@ -57,11 +58,20 @@ class BusinessArea(models.Model):
     class Meta:
         db_table = 'business_areas'
 
+class ApplyStatus(models.Model):
+    status = models.CharField("지원서 상태", max_length=40)
+    class Meta:
+        db_table = 'apply_status'
+    def __str__(self):
+        return self.status
+
 
 class JobPostActivity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     job_post = models.ForeignKey(JobPost, on_delete=models.CASCADE, null=True)
     apply_date = models.DateTimeField(auto_now_add=True)
+    status = models.ForeignKey(ApplyStatus, on_delete=models.SET_NULL, null=True)
 
     class Meta:
         db_table = "job_post_activity"
+

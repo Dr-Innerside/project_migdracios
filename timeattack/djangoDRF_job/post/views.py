@@ -79,7 +79,7 @@ class ApplyView(APIView):
         request.data['user']= request.user.id
         apply_serialzer = JobPostActivitySerializer(data=request.data)
         if apply_serialzer.is_valid():
-            apply_serialzer.save()
+            apply_serialzer.save(status="submitted")
             return Response(status=status.HTTP_200_OK)
 
         return Response(apply_serialzer.errors, status=status.HTTP_400_BAD_REQUEST)
