@@ -4,6 +4,7 @@ from rest_framework import permissions, status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .models import (
+    JobPostActivity,
     JobPostSkillSet,
     JobType,
     JobPost,
@@ -75,6 +76,16 @@ class JobView(APIView):
 class ApplyView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsCandidateUser]
+
+    def get(self, request):
+        # status 로 필터링? 필터링할 값을 주겠다는 이야기네?
+        # 주소에 값을 담아서 준다는건 URL의 파라미터를 이용하겠다는 것!
+        status = request.GET['status']
+        target_status = JobStatus.objects.get(status=status)
+        target_activity = JobPostActivity.objects.get(apply_status=target_status)
+        activity_serializer = JobPostActivitySerializer(target_activity)
+        
+        return Response(activity_serializer.data)
 
     def post(self, request):
         request.data['user']= request.user.id
