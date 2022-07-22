@@ -58,21 +58,22 @@ class BusinessArea(models.Model):
         db_table = 'business_areas'
 
 
+class JobStatus(models.Model):
+    status = models.CharField("지원서 상태", max_length=30)
+    class Meta:
+        db_table = "job_status"
+    def __str__(self):
+        return self.status
+
 class JobPostActivity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     job_post = models.ForeignKey(JobPost, on_delete=models.CASCADE, null=True)
     apply_date = models.DateTimeField(auto_now_add=True)
+    apply_status = models.ForeignKey(JobStatus, on_delete=models.SET_NULL, null=True)
 
     class Meta:
         db_table = "job_post_activity"
 
-class JobStatus(models.Model):
-    status = models.CharField("지원서 상태", max_length=30)
-    
-    class Meta:
-        db_table = "job_status"
-        
-    def __str__(self):
-        return self.status
+
     
     
