@@ -11,3 +11,7 @@ class Product(models.Model):
     join_date = models.DateTimeField("도입일", auto_now_add=True)
     is_active = models.BooleanField("active 여부", default=False)
     
+class Subscribe(models.Model):
+    purchase_date = models.DateTimeField("구매일", auto_now_add=True)
+    sub_start_date = models.DateTimeField("구독시작일", auto_now=True)
+    sub_end_date = models.DateTimeField("구독종료일", auto_now=True)
