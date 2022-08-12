@@ -12,6 +12,8 @@ class Product(models.Model):
     is_active = models.BooleanField("active 여부", default=False)
     
 class Subscribe(models.Model):
+    subscriber = models.ForeignKey("user.User", verbose_name="구독자")
+    item = models.ForeignKey(Product, verbose_name="구독상품")
     purchase_date = models.DateTimeField("구매일", auto_now_add=True)
     sub_start_date = models.DateTimeField("구독시작일", auto_now=True)
     sub_end_date = models.DateTimeField("구독종료일", auto_now=True)
